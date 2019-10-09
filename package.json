@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://dangtuanhuy.github.io/ReactJS",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
@@ -13,8 +14,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy":"yarn build",
-    "deploy":"gh-pages -b master -d build"
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -b master -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
