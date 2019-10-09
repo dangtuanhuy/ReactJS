@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
+import { CardList } from './components/card-list/card-list.component';
 class App extends Component {
   constructor() {
     super();
     this.state = {
       string: 'Hello',
       monsters: [
-        // {
-        //   name: 'Frankenstein',
-        //   id: 'WPF1'
-        // },
-        // {
-        //   name: 'Dracula',
-        //   id: 'WPF2'
-
-        // },
-        // {
-        //   name: 'Zombie',
-        //   id: 'WPF3'
-        // },
-        // {
-        //   name: 'Wolf Man',
-        //   id: 'WPF4'
-        // },
-      ]
+      ],
+      searchField: ''
     };
   }
   componentDidMount() {
@@ -32,11 +17,16 @@ class App extends Component {
       .then(users => this.setState({monsters: users}));
   }
   render() {
+    const {monsters, searchField} = this.state;
+    const filterSearch = monsters.filter(monsters => 
+      monsters.name.toLowerCase().includes(searchField.toLowerCase()));
+
+
     return (
       <div className="App">
-        {
-          this.state.monsters.map(m => <h1 key={m.id}>{m.name}</h1>)
-        }
+      <input type='search' placeholder='SEARCH' 
+      onChange = {e => this.setState({ searchField: e.target.value })}/>  
+      <CardList monsters={filterSearch}/>
       </div>
     )
   }
