@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      string: 'Hello',
+      monsters: [
+        // {
+        //   name: 'Frankenstein',
+        //   id: 'WPF1'
+        // },
+        // {
+        //   name: 'Dracula',
+        //   id: 'WPF2'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        // },
+        // {
+        //   name: 'Zombie',
+        //   id: 'WPF3'
+        // },
+        // {
+        //   name: 'Wolf Man',
+        //   id: 'WPF4'
+        // },
+      ]
+    };
+  }
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({monsters: users}));
+  }
+  render() {
+    return (
+      <div className="App">
+        {
+          this.state.monsters.map(m => <h1 key={m.id}>{m.name}</h1>)
+        }
+      </div>
+    )
+  }
 }
 
 export default App;
